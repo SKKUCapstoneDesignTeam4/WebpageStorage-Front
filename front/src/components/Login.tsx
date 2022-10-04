@@ -9,8 +9,6 @@ const {Title}=Typography;
  * @returns Render to login
  */
 
-        
-
 export function Login(){
     return(
         <Row>
@@ -19,34 +17,34 @@ export function Login(){
                         <Title>Web Pages Storage</Title>
                 </div>
             </Col>
-          <Col flex={1}>
-            <div className="Login-area">
-                <Row align='middle' justify='center'>
-                    <Col>
-                        <Input
-                            placeholder="ID" />
-                    </Col>
-                </Row>
+            <Col flex={1}>
+                <div className="Login-area">
+                    <Row align='middle' justify='center'>
+                        <Col>
+                            <Input
+                                placeholder="ID" />
+                        </Col>
+                    </Row>
 
-                <Row align='middle' justify='center'>
-                    <Col>
-                        <Input.Password
-                            placeholder="Password"
-                        /> 
-                    </Col>
-                </Row>
+                    <Row align='middle' justify='center'>
+                        <Col>
+                            <Input.Password
+                                placeholder="Password"
+                            /> 
+                        </Col>
+                    </Row>
 
-                <Row>
-                    <Col span={4}>
-                        <Button type='primary'>Login</Button>
-                    </Col> 
+                    <Row>
+                        <Col span={4}>
+                            <Button type='primary'>Login</Button>
+                        </Col> 
                     
-                    <Col span={4} offset={8}>
-                        <Button type='primary'>Resister</Button>
-                    </Col>
-                </Row>
+                        <Col span={4} offset={8}>
+                            <Button type='primary'>Resister</Button>
+                        </Col>
+                    </Row>
                 </div>
-          </Col>
+            </Col>
         </Row>
     )
 }
