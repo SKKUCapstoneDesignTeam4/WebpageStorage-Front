@@ -1,40 +1,40 @@
-import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
-
+import { Menu,} from 'antd';
+import { Link } from 'react-router-dom';
 import React from 'react';
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-    label: React.ReactNode,
-    key: React.Key,
-    children?: MenuItem[],
-    type?: 'group',
-  ): MenuItem {
-    return {
-      key,
-      children,
-      label,
-      type,
-    } as MenuItem;
-  }
-
-const items: MenuItem[] = [
-    getItem('Main', '1'),
-    getItem('New Pages', '2'),
-    getItem('Stored Pages', '3'),
-    getItem('Registered Sites', '4'),
-    getItem('Setting', '5'),
-];
 
 export function SideMenu(){
     return(
         <Menu
-                defaultSelectedKeys={['1']}
                 mode="inline"
                 theme="dark"
-                items={items}
-            />
+                >
+                <Menu.Item key="1">
+                  <Link to="/Main">
+                    <span>Main</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Link to="/NewPages">
+                    <span>New Pages</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="3">
+                  <Link to="/StoredPages">
+                    <span>Stored Pages</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="4">
+                  <Link to="/Register">
+                    <span>Registerd Sites</span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="5">
+                  <Link to="/Settings">
+                    <span>Settings</span>
+                  </Link>
+                </Menu.Item>
+        </Menu>
     );
 }
 

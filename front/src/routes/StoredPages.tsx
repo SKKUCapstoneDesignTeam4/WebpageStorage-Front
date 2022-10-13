@@ -11,18 +11,18 @@ import './MainPage.css';
 const { Header, Content, Sider, } = Layout;
 
 
-export default function NewPages(){
+export default function StoredPages(){
 
     const [collapsed, setCollapsed] = useState(false);
     const cols_new = [];
     const colCount = 6;
-
+    
     for (let i = 0; i < colCount; i++) {
       cols_new.push(
         <Col key={i.toString()} span={24 / colCount}>
           <div>
             <Card title="Card title" bordered={false} style={{ width: 350 }}>
-                <p>New WebPage</p>
+                <p>Stored Pages</p>
                 <p>Will</p>
                 <p>show</p>
             </Card>
@@ -45,7 +45,7 @@ export default function NewPages(){
                 <Content style={{ margin: '0 16px' }}>
                     <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item className='Category-title'>
-                            New
+                            Stored
                         </Breadcrumb.Item>
                         
                     </Breadcrumb>
