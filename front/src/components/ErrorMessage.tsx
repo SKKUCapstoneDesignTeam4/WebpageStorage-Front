@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { Button, Col, Row, Typography } from 'antd';
-import Column from 'antd/lib/table/Column';
 
 import './design/ErrorMessage.css'
 const { Title, Text } = Typography;
