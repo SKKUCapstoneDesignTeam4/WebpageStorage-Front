@@ -25,12 +25,12 @@ export function SideMenu(){
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="4">
-                  <Link to="/Register">
+                  <Link to="/Registered">
                     <span>Registerd Sites</span>
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="5">
-                  <Link to="/Settings">
+                  <Link to="/Setting">
                     <span>Settings</span>
                   </Link>
                 </Menu.Item>
