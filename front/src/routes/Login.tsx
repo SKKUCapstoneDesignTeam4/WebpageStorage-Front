@@ -48,7 +48,6 @@ export function Login(){
             }
         });
         if(response.status == 200){
-            console.log(response.status);
             const token = response.data.token;
             cookies.set('access_token', token, {sameSite: 'strict'});
             navigate('/Main');
