@@ -12,6 +12,8 @@ import type { ColumnsType } from 'antd/es/table';
 import SideMenu from '../components/SideMenu';
 import ErrorMessage from '../components/ErrorMessage';
 
+import Cookies from "universal-cookie";
+
 const { Header, Content, Footer, Sider } = Layout;
 const { Title, Text } = Typography;
 
@@ -40,6 +42,7 @@ const columns: ColumnsType<DataType> = [
 },
 ];
 
+const cookies = new Cookies();
 
 
 export default function Registered() {
@@ -77,10 +80,13 @@ export default function Registered() {
             const response = await axios({
                 url: "http://localhost:4000/api/site",
                 method: "post",
+                headers: {
+                    "x-access-token" : cookies.get('access_token')
+                },
                 data: {
                     title: name,
                     url: address,
-                    crawlUrl: "",
+                    crawlUrl: address,
                     cssSelector: ""
                 }
             });
