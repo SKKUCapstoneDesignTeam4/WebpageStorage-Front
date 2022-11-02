@@ -14,8 +14,8 @@ import ErrorMessage from '../components/ErrorMessage';
 
 import Cookies from "universal-cookie";
 
-const { Header, Content, Footer, Sider } = Layout;
-const { Title, Text } = Typography;
+const { Header, Content, Sider } = Layout;
+const {Text } = Typography;
 
 interface DataType {
     key: string;
@@ -50,6 +50,7 @@ export default function Registered() {
     const [name, SetName] = React.useState("");
     const [address, SetAddress] = React.useState("");
     const [description, SetDescription] = React.useState("");
+    const [css, SetCSS] = React.useState("");
     const [iserror, SetError]= React.useState(false);
     const [errorstring, SetErrorString]= React.useState("");
 
@@ -62,8 +63,7 @@ export default function Registered() {
     function toggleError(){
         SetError(!iserror);
     }
-//ToDo
-//현재 인증되지 않아서 요청이 거부됨
+
     const addSite = async () => {
         if (name===""){
             SetErrorString("Please type name");
@@ -87,10 +87,10 @@ export default function Registered() {
                     title: name,
                     url: address,
                     crawlUrl: address,
-                    cssSelector: ""
+                    cssSelector: css
                 }
             });
-            if(response.status == 200){
+            if(response.status === 200){
                 console.log(response.status)
             }
         }
@@ -152,6 +152,14 @@ export default function Registered() {
                                 placeholder="Description"
                                 value={description} 
                                 onChange={({ target: {value} }) => SetDescription(value)} 
+                            />
+                        </Col>
+                        <Col>
+                            <Input
+                                id="CSS"
+                                placeholder="CSS"
+                                value={css} 
+                                onChange={({ target: {value} }) => SetCSS(value)} 
                             />
                         </Col>
                         <Col>

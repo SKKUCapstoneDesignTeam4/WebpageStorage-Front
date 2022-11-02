@@ -54,7 +54,8 @@ export function UserResister({func}:ResisterProps) {
 
     return (
         <>
-          <Modal className='UserResister' isOpen={true}>
+          <Modal className='UserResister' isOpen={true}
+          ariaHideApp={false}>
                     <Row align='middle' justify='center'>
                             <Col >
                                 <Title level={2}>Create Account</Title>

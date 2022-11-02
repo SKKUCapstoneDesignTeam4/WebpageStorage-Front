@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Modal from 'react-modal';
 import { Button, Col, Row, Typography } from 'antd';
 
@@ -11,28 +12,36 @@ type MessageProps ={
 }
 
 export function ErrorMessage({title, message, func} : MessageProps) {
-  return (
-    <>
-      <Modal className='ErrorMessage' isOpen={true}>
-        
-            <Row>
-                <Col>
-                    <Title level={3}>{title}</Title>
-                </Col>
-            </Row>
-            <Row >
-                <Col>
-                    <Text strong>{message}</Text>
-                </Col>
-            </Row>
-            <Row >
-                <Col>
-                    <Button size="small" onClick={func}>Close</Button>
-                </Col>
-            </Row>
-      </Modal>
-    </>
-  )
+    const [modalOpen, setModalOpen] = useState(true);
+
+    function close(){
+        setModalOpen(false);
+        func();
+    }
+
+
+    return (
+        <>
+        <Modal className='ErrorMessage' isOpen={modalOpen}>
+            
+                <Row>
+                    <Col>
+                        <Title level={3}>{title}</Title>
+                    </Col>
+                </Row>
+                <Row >
+                    <Col>
+                        <Text strong>{message}</Text>
+                    </Col>
+                </Row>
+                <Row >
+                    <Col>
+                        <Button size="small" onClick={close}>Close</Button>
+                    </Col>
+                </Row>
+        </Modal>
+        </>
+    )
 } 
 
 export default ErrorMessage;

@@ -9,7 +9,8 @@ import Cookies from "universal-cookie";
 
 import ErrorMessage from '../components/ErrorMessage';
 import UserResister from '../components/UserResister';
-const cookies = new Cookies();
+
+export const cookies = new Cookies();
 
 const {Title}=Typography;
 
@@ -47,7 +48,7 @@ export function Login(){
                 id: id, password: password
             }
         });
-        if(response.status == 200){
+        if(response.status === 200){
             const token = response.data.token;
             cookies.set('access_token', token, {sameSite: 'strict'});
             navigate('/Main');
