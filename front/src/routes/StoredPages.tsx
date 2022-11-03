@@ -34,9 +34,16 @@ export default function StoredPages(){
     return(
         <Layout style={{ minHeight: '100vh' }}>
             <Header className="site-layout-background" style={{ padding: 0 }}>
-                <Button className="Menu-Button" onClick={()=>setCollapsed((prev)=>!prev)} style={{ marginBottom: 16 }}>
-                    {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                </Button>
+                <Row>
+                    <Col>
+                        <Button className="Menu-Button" onClick={()=>setCollapsed((prev)=>!prev)} style={{ marginBottom: 16 }}>
+                            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        </Button>
+                    </Col>
+                    <Col>
+                        <div><h1 className="title">Web Page Storage</h1></div>
+                    </Col>
+                </Row>
             </Header>
             <Layout className="site-layout">
                 <Sider collapsible collapsed={collapsed} trigger={null} onCollapse={value => setCollapsed(value)} collapsedWidth="0">

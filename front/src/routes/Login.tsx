@@ -1,14 +1,16 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom";
 import {Button, Input, Col, Row, Typography} from 'antd';
 import './Login.css';
 
 import axios from 'axios'
-import Password from 'antd/lib/input/Password';
-
 import Cookies from "universal-cookie";
-import {useNavigate } from "react-router-dom";
 
-const cookies = new Cookies();
+
+import ErrorMessage from '../components/ErrorMessage';
+import UserResister from '../components/UserResister';
+
+export const cookies = new Cookies();
 
 const {Title}=Typography;
 
@@ -24,9 +26,21 @@ export function Login(){
     const [password, SetPassword] = React.useState("");
     
     const navigate = useNavigate();
+    
+    const [isLoginError, setLoginError]=useState(false);
+    const [isResister, setResister]=useState(false);
+
+    const  toggleError = () => {
+        setLoginError(!isLoginError);
+    }
+
+    const  toggleResister = () => {
+        setResister(!isResister);
+    }
 
     const login = async () => {
         
+        try{
         const response = await axios({
             url: "http://localhost:4000/api/auth",
             method: "post",
@@ -34,34 +48,22 @@ export function Login(){
                 id: id, password: password
             }
         });
-        console.log(response.status);
-        if(response.status == 200){
+        if(response.status === 200){
             const token = response.data.token;
             cookies.set('access_token', token, {sameSite: 'strict'});
             navigate('/Main');
+        }
+        } catch(ex){
+            toggleError();
         }
         //token있을시 token저장
-    }
-
-    const register = async () => {
-        const response = await axios({
-            url: "http://localhost:4000/api/register",
-            method: "post",
-            data: {
-                id: id, password: password
-            }
-        });
-        if(response.status == 200){
-            const token = response.data.token;
-            cookies.set('access_token', token, {sameSite: 'strict'});
-            navigate('/Main');
-        }
     }
     
     return(
         <Row>
             <Col flex={3}>
                 <div className="Title-area">
+               
                         <Title>Web Pages Storage</Title>
                 </div>
             </Col>
@@ -88,14 +90,15 @@ export function Login(){
                             /> 
                         </Col>
                     </Row>
-
                     <Row>
                         <Col span={4}>
                             <Button type='primary' onClick={login}>Login</Button>
+                            {isLoginError ? <ErrorMessage title="Login Error" message="Incorrect username or password" func={toggleError}/> : ""}
                         </Col> 
                     
                         <Col span={4} offset={8}>
-                            <Button type='primary' onClick={register}>Resister</Button>
+                            <Button type='primary' onClick={toggleResister}>Resister</Button>
+                            {isResister ? <UserResister func={toggleResister}/> : ""}
                         </Col>
                     </Row>
                 </div>
